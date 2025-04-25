@@ -28,8 +28,8 @@ namespace ResumeBuilder
             .AddCookie()
             .AddOAuth("LinkedIn", options =>
             {
-                options.ClientId = "77ddftugrqxo68";
-                options.ClientSecret = "WPL_AP1.vhpnT4ZzEfPFRgdt.I9/UEg==";
+                options.ClientId = builder.Configuration["LinkedIn:ClientId"];
+                options.ClientSecret = builder.Configuration["LinkedIn:ClientSecret"];
                 options.CallbackPath = "/signin-linkedin";
 
                 options.AuthorizationEndpoint = "https://www.linkedin.com/oauth/v2/authorization";
