@@ -1,0 +1,61 @@
+﻿@model ResumeBuilder.Models.ViewModels.ResumeViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container">
+    <h1 class="mb-4">Your Resume Dashboard</h1>
+    
+    @if (!Model.IsLinkedInImported)
+    {
+        <div class="alert alert-info">
+            <h5>Import Your LinkedIn Profile</h5>
+            <p>Get started quickly by importing your professional experience from LinkedIn.</p>
+            <a asp-controller="Resume" asp-action="ImportFromLinkedIn" class="btn btn-primary">Import LinkedIn Data</a>
+        </div>
+    }
+    else
+    {
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>Your Resume</h5>
+            </div>
+            <div class="card-body">
+                <h2>@Model.Resume.FirstName @Model.Resume.LastName</h2>
+                <p>@Model.Resume.Email</p>
+                
+                <div class="row mt-4">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Education</h5>
+                                <p class="card-text">@Model.Resume.Education.Count entries</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Experience</h5>
+                                <p class="card-text">@Model.Resume.Experience.Count entries</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Skills</h5>
+                                <p class="card-text">@Model.Resume.Skills.Count entries</p>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-4">
+                    <a asp-controller="Resume" asp-action="Edit" class="btn btn-primary">Edit Resume</a>
+                    <a asp-controller="Resume" asp-action="DownloadPdf" class="btn btn-success">Download PDF</a>
+                </div>
+            </div>
+    }
+</div>
